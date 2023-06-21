@@ -1,2 +1,2 @@
-# LeyingStudio.github.io
-Leying website
+# EarlDyor.github.io
+EarlDyor website
