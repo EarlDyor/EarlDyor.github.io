@@ -1,73 +1,176 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-TW">
 <head>
-  <title>EARL學習ChatGPT網站</title>
-  <link rel="stylesheet" type="text/css" href="styles.css">
+  <meta charset="UTF-8">
+  <title>EARL學習ChatGPT</title>
+  <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
+  <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
+  <link rel="stylesheet" href="./style.css">
+  <style>
+    /* 自訂的樣式 */
+  </style>
 </head>
 <body>
-  <header>
-    <h1>EARL學習ChatGPT</h1>
-    <nav>
-      <ul>
-        <li><a href="#about">關於</a></li>
-        <li><a href="#features">特色</a></li>
-        <li><a href="#contact">聯絡</a></li>
+<!-- 頁面內容 -->
+<!-- 導覽列 -->
+<nav id="navigation" class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">EARL學習ChatGPT</a>
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbarButtons" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <div class="collapse navbar-collapse" id="navbarButtons">          
+      <ul class="nav navbar-nav navbar-right">
+        <li id="navAbout" class="btn navbar-btn navActive">關於</li>
+        <li id="navServices" class="btn navbar-btn">服務</li>
+        <li id="navContact" class="btn navbar-btn">聯絡我們</li>
       </ul>
-    </nav>
-  </header>
-
-  <section id="about">
-    <div class="container">
-      <h2>關於EARL學習ChatGPT</h2>
-      <p>EARL（Enhanced AI Response Learning）是一個基於ChatGPT的學習平台，旨在提供使用者更加個性化的對話體驗。它使用OpenAI的GPT模型作為核心，通過學習使用者的回饋和訓練數據來不斷提升對話能力。</p>
     </div>
-  </section>
+  </div>
+</nav>
 
-  <section id="features">
-    <div class="container">
-      <h2>特色</h2>
-      <div class="feature">
-        <img src="feature1.png" alt="Feature 1">
-        <h3>個性化對話</h3>
-        <p>EARL通過學習使用者的回饋和偏好來提供更加個性化的對話體驗。使用者的反饋可以讓EARL理解和記憶對話中的內容，進而提供更準確、相關的回答。</p>
-      </div>
-      <div class="feature">
-        <img src="feature2.png" alt="Feature 2">
-        <h3>靈活訓練</h3>
-        <p>使用者可以透過提供正確的回答或提問來幫助EARL學習。EARL會根據使用者的回饋來調整模型，以提供更好的對話體驗。</p>
-      </div>
-      <div class="feature">
-        <img src="feature3.png" alt="Feature 3">
-        <h3>多領域支援</h3>
-        <p>EARL可以應對各種不同的領域和話題。無論是科學、技術、文化還是日常生活，EARL都能提供有關信息和回答問題。</p>
+<!-- 頁面頂部圖片 -->
+<div class="parallaxTop">
+  <div class="jumboBanner shadow">
+    <h1 class="banner"><span style="background-color: purple; color: white;">Earl練習</span></h1>
+    <h3 class="motto">練習 / 程式 / 管理</h3>
+    <button id="bannerBtn" class="bannerBtn">了解更多</button>
+  </div>
+</div>
+
+<!-- 關於區塊 -->
+<div id="aboutBlock" class="container">
+  <div id="aboutRow" class="row">
+    <div class="aboutLeft col-xs-12 col-sm-6 cloak">
+      <div class="row">
+        <div class="col-md-3"></div>
+        <div class="aboutImg col-md-9"></div>
       </div>
     </div>
-  </section>
+    <div class="aboutRight col-xs-12 col-sm-6">
+      <div class="row">
+        <div class="col-md-9">            
+          <h2>我們的特色</h2>
+          <hr />
+          <p>
+Feature 1
+個性化對話
+EARL通過學習使用者的回饋和偏好來提供更加個性化的對話體驗。使用者的反饋可以讓EARL理解和記憶對話中的內容，進而提供更準確、相關的回答。
 
-  <section id="contact">
-    <div class="container">
-      <h2>聯絡我們</h2>
+Feature 2
+靈活訓練
+使用者可以透過提供正確的回答或提問來幫助EARL學習。EARL會根據使用者的回饋來調整模型，以提供更好的對話體驗。
+
+Feature 3
+多領域支援
+EARL可以應對各種不同的領域和話題。無論是科學、技術、文化還是日常生活，EARL都能提供有關信息和回答問題。</p>
+        </div>
+      </div>
+      <div class="col-md-3"></div>          
+    </div>
+  </div>
+</div>
+
+<!-- 服務區塊 -->
+<div id="servicesRow" class="parallaxSection">
+  <div class="shadowSection">
+    <h2>服務</h2>
+    <hr />
+  </div>
+</div>
+<div id="serviceBlocks" class="row">
+  <div class="container">
+    <div class="serviceBlock col-md-4">
+      <h1>服務</h1>
+      <img src="https://cdn0.iconfinder.com/data/icons/thinico/88/thinico-17-512.png" />
+      <p>我們做一些事情！Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam. Sed commodo nibh ante facilisis bibendum dolor feugiat at. Duis sed dapibus leo nec ornare diam commodo nibh.</p>
+    </div>
+    <div class="serviceBlock col-md-4">
+      <h1>服務</h1>
+      <img src="https://cdn0.iconfinder.com/data/icons/thinico/88/thinico-17-512.png" />
+      <p>我們做一些事情！Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam. Sed commodo nibh ante facilisis bibendum dolor feugiat at. Duis sed dapibus leo nec ornare diam commodo nibh.</p>
+    </div>
+    <div class="serviceBlock col-md-4">
+      <h1>服務</h1>
+      <img src="https://cdn0.iconfinder.com/data/icons/thinico/88/thinico-17-512.png" />
+      <p>我們做一些事情！Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam. Sed commodo nibh ante facilisis bibendum dolor feugiat at. Duis sed dapibus leo nec ornare diam commodo nibh.</p>
+    </div>
+  </div>
+</div>
+
+<!-- 聯絡表單 -->
+<div id="phoneContact" class="phoneContact row">
+  <div class="container">
+    <h2>今天就打電話聯絡我們！致電 1-555-555-5555</h2>
+  </div>
+</div> 
+<div class="container">               
+  <div id="contactRow" class="contactForm row">
+    <h2>聯絡表單</h2>
+    <hr />
+    <h3>請在下方輸入您的聯絡資訊和訊息。</h3>
+    <form name="contactForm" class="form-group" action="#" method="POST">
+      <input id="formName" name="name" class="inputInline form-control" type="text" placeholder="姓名" required />
+      <input id="formEmail" name="email" class="inputInline form-control" type="email" placeholder="電子郵件" required />
+      <textarea id="formMessage" name="message" class="form-control" type="text" placeholder="訊息" required></textarea>
+      <input name="submit" class="bannerBtn" type="submit" value="發送訊息" />
+    </form>
+  </div>        
+</div>
+
+<!-- 聯絡資訊 -->
+<div id="contactInfo" class="row">
+  <div class="container">
+    <div class="contactStack">
+      <h2>聯絡資訊</h2>
+      <hr />
       <div class="contactCol">
         <h3>地址</h3>
         <p>台灣台北市</p>
       </div>
       <div class="contactCol">
         <h3>電子郵件</h3>
-        <p>info@earlchatgpt.com</p>
+        <p>info@example.com</p>
       </div>
       <div class="contactCol">
         <h3>電話</h3>
         <p>1-555-555-5555</p>
       </div>
     </div>
-  </section>
+  </div>
+</div>
 
-  <footer>
-    <div class="container">
-      <p>版權所有 &copy; 2023 EARL學習ChatGPT</p>
+<!-- 頁尾 -->
+<footer id="footer" class="row">
+  <div class="container">
+    <div class="footerStack">
+      <div class="footerCol">
+        <h3>關於我們</h3>
+        <p>我們是一個專業的公司。</p>
+      </div>
+      <div class="footerCol">
+        <h3>服務</h3>
+        <p>服務一</p>
+        <p>服務二</p>
+        <p>服務三</p>
+      </div>
+      <div class="footerCol">
+        <h3>聯絡我們</h3>
+        <p>地址：台灣台北市</p>
+        <p>電話：1-555-555-5555</p>
+        <p>電子郵件：info@example.com</p>
+      </div>
     </div>
-  </footer>
+  </div>
+</footer>
 
-  <script src="script.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="./script.js"></script>
 </body>
 </html>
