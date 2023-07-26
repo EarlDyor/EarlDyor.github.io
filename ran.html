@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>隨機產生數值</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f2f2f2;
+      font-family: Arial, sans-serif;
+    }
+    
+    .container {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    }
+    
+    h1 {
+      text-align: center;
+    }
+    
+    .input-group {
+      margin-bottom: 10px;
+    }
+    
+    .input-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    
+    .input-group input {
+      padding: 5px;
+      width: 100px;
+    }
+    
+    #display {
+      text-align: center;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    
+    .buttons {
+      text-align: center;
+    }
+    
+    .buttons button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin-right: 10px;
+      border: none;
+      border-radius: 3px;
+      background-color: #007bff;
+      color: #fff;
+      cursor: pointer;
+    }
+    
+    .buttons button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>隨機產生數值</h1>
+    <div class="input-group">
+      <label for="minValue">最小值：</label>
+      <input type="number" id="minValue" min="1" value="1">
+    </div>
+    <div class="input-group">
+      <label for="maxValue">最大值：</label>
+      <input type="number" id="maxValue" min="1" value="100">
+    </div>
+    <div class="input-group">
+      <label for="quantity">數量：</label>
+      <input type="number" id="quantity" min="1" value="5">
+    </div>
+    <div id="display"></div>
+    <div class="buttons">
+      <button id="randomButton">Random</button>
+      <button id="stopButton">Stop</button>
+    </div>
+  </div>
+
+  <script>
+    const displayElement = document.getElementById('display');
+    const minValueInput = document.getElementById('minValue');
+    const maxValueInput = document.getElementById('maxValue');
+    const quantityInput = document.getElementById('quantity');
+    const randomButton = document.getElementById('randomButton');
+    const stopButton = document.getElementById('stopButton');
+    
+    const valueArray = [];
+    
+    function generateRandomValue(min, max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+    
+    function displayRandomValues() {
+      const min = parseInt(minValueInput.value);
+      const max = parseInt(maxValueInput.value);
+      const quantity = parseInt(quantityInput.value);
+      
+      valueArray.length = 0;
+      displayElement.innerHTML = '';
+      
+      const uniqueValues = new Set();
+      
+      while (uniqueValues.size < quantity) {
+        const randomValue = generateRandomValue(min, max);
+        uniqueValues.add(randomValue);
+      }
+      
+      valueArray.push(...Array.from(uniqueValues));
+      
+      valueArray.forEach(function(value) {
+        const valueElement = document.createElement('span');
+        valueElement.textContent = value + ' ';
+        displayElement.appendChild(valueElement);
+      });
+    }
+    
+    let intervalId;
+    
+    function startRandomGeneration() {
+      displayRandomValues();
+      
+      intervalId = setInterval(function() {
+        displayRandomValues();
+      }, 500);
+    }
+    
+    function stopRandomGeneration() {
+      clearInterval(intervalId);
+    }
+    
+    randomButton.addEventListener('click', function() {
+      startRandomGeneration();
+    });
+    
+    stopButton.addEventListener('click', function() {
+      stopRandomGeneration();
+    });
+  </script>
+</body>
+</html>

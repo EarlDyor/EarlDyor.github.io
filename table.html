@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>備忘錄</title>
+  <style>
+    /* CSS樣式 */
+
+    /* 全局樣式 */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+    }
+
+    /* 外容器 */
+    .container {
+      max-width: 600px;
+      margin: 50px auto;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 5px;
+      padding: 20px;
+    }
+
+    /* 標題 */
+    .title {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    /* 備忘錄表單 */
+    .memo-form {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 20px;
+    }
+
+    .memo-form input[type="text"],
+    .memo-form select {
+      margin-bottom: 10px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      font-size: 14px;
+    }
+
+    .memo-form button {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 3px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    /* 備忘錄列表 */
+    .memo-list {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .memo-list li {
+      margin-bottom: 10px;
+      padding: 10px;
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 3px;
+    }
+
+    .memo-list li span {
+      font-weight: bold;
+    }
+
+    .memo-list li button {
+      margin-right: 5px;
+      background-color: #dc3545;
+      color: #fff;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 3px;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    /* 編輯表單 */
+    .edit-form {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 10px;
+    }
+
+    .edit-form input[type="text"],
+    .edit-form select {
+      margin-bottom: 10px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      font-size: 14px;
+    }
+
+    .edit-form button {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #28a745;
+      color: #fff;
+      border: none;
+      border-radius: 3px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h2 class="title">備忘錄</h2>
+
+    <form class="memo-form" onsubmit="addMemo(event)">
+      <input type="text" id="memo-text" placeholder="備忘錄內容" required>
+      <input type="text" id="memo-time" placeholder="時間" required>
+      <select id="memo-type" required>
+        <option value="" disabled selected>選擇類型</option>
+        <option value="工作">工作</option>
+        <option value="學習">學習</option>
+        <option value="生活">生活</option>
+      </select>
+      <button type="submit">新增</button>
+    </form>
+
+    <ul class="memo-list" id="memo-list">
+      <!-- 備忘錄列表 -->
+    </ul>
+  </div>
+
+  <script>
+    // JavaScript代碼
+
+    // 備忘錄數據
+    let memos = [];
+
+    // 獲取元素
+    const memoText = document.getElementById("memo-text");
+    const memoTime = document.getElementById("memo-time");
+    const memoType = document.getElementById("memo-type");
+    const memoList = document.getElementById("memo-list");
+
+    // 新增備忘錄
+    function addMemo(event) {
+      event.preventDefault();
+
+      const text = memoText.value;
+      const time = memoTime.value;
+      const type = memoType.value;
+
+      if (text.trim() !== "" && time.trim() !== "" && type.trim() !== "") {
+        const memo = {
+          id: Date.now(),
+          text,
+          time,
+          type,
+        };
+
+        memos.push(memo);
+
+        renderMemo(memo);
+
+        memoText.value = "";
+        memoTime.value = "";
+        memoType.value = "";
+      }
+    }
+
+    // 刪除備忘錄
+    function deleteMemo(id) {
+      memos = memos.filter((memo) => memo.id !== id);
+
+      const memoItem = document.getElementById(`memo-${id}`);
+      memoItem.remove();
+    }
+
+    // 編輯備忘錄
+    function editMemo(id) {
+      const memo = memos.find((memo) => memo.id === id);
+
+      const editForm = document.createElement("form");
+      editForm.className = "edit-form";
+
+      const editText = document.createElement("input");
+      editText.type = "text";
+      editText.value = memo.text;
+      editForm.appendChild(editText);
+
+      const editTime = document.createElement("input");
+      editTime.type = "text";
+      editTime.value = memo.time;
+      editForm.appendChild(editTime);
+
+      const editType = document.createElement("select");
+      const types = ["工作", "學習", "生活"];
+      types.forEach((type) => {
+        const option = document.createElement("option");
+        option.value = type;
+        option.textContent = type;
+        if (type === memo.type) {
+          option.selected = true;
+        }
+        editType.appendChild(option);
+      });
+      editForm.appendChild(editType);
+
+      const saveButton = document.createElement("button");
+      saveButton.textContent = "儲存";
+      saveButton.addEventListener("click", () => saveMemo(id, editText.value, editTime.value, editType.value));
+      editForm.appendChild(saveButton);
+
+      const cancelButton = document.createElement("button");
+      cancelButton.textContent = "取消";
+      cancelButton.addEventListener("click", () => cancelEdit(id));
+      editForm.appendChild(cancelButton);
+
+      const memoItem = document.getElementById(`memo-${id}`);
+      memoItem.innerHTML = "";
+      memoItem.appendChild(editForm);
+    }
+
+    // 儲存編輯的備忘錄
+    function saveMemo(id, text, time, type) {
+      const memo = memos.find((memo) => memo.id === id);
+      memo.text = text;
+      memo.time = time;
+      memo.type = type;
+
+      const memoItem = document.getElementById(`memo-${id}`);
+      memoItem.innerHTML = "";
+      renderMemo(memo);
+    }
+
+    // 取消編輯
+    function cancelEdit(id) {
+      const memo = memos.find((memo) => memo.id === id);
+
+      const memoItem = document.getElementById(`memo-${id}`);
+      memoItem.innerHTML = "";
+      renderMemo(memo);
+    }
+
+    // 渲染備忘錄
+    function renderMemo(memo) {
+      const memoItem = document.createElement("li");
+      memoItem.id = `memo-${memo.id}`;
+
+      const memoText = document.createElement("span");
+      memoText.textContent = memo.text;
+
+      const memoTime = document.createElement("span");
+      memoTime.textContent = memo.time;
+
+      const memoType = document.createElement("span");
+      memoType.textContent = memo.type;
+
+      const editButton = document.createElement("button");
+      editButton.textContent = "編輯";
+      editButton.addEventListener("click", () => editMemo(memo.id));
+
+      const deleteButton = document.createElement("button");
+      deleteButton.textContent = "刪除";
+      deleteButton.addEventListener("click", () => deleteMemo(memo.id));
+
+      memoItem.appendChild(memoText);
+      memoItem.appendChild(document.createElement("br"));
+      memoItem.appendChild(memoTime);
+      memoItem.appendChild(document.createElement("br"));
+      memoItem.appendChild(memoType);
+      memoItem.appendChild(document.createElement("br"));
+      memoItem.appendChild(editButton);
+      memoItem.appendChild(deleteButton);
+
+      memoList.appendChild(memoItem);
+    }
+  </script>
+</body>
+
+</html>
