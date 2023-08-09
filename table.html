@@ -8,123 +8,42 @@
   <style>
     /* CSS樣式 */
 
-    /* 全局樣式 */
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f5f5f5;
-    }
-
-    /* 外容器 */
-    .container {
-      max-width: 600px;
-      margin: 50px auto;
-      background-color: #fff;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      border-radius: 5px;
-      padding: 20px;
-    }
-
-    /* 標題 */
-    .title {
-      font-size: 24px;
-      font-weight: bold;
-      margin-bottom: 10px;
-      text-align: center;
-    }
-
-    /* 備忘錄表單 */
-    .memo-form {
-      display: flex;
-      flex-direction: column;
-      margin-bottom: 20px;
-    }
-
-    .memo-form input[type="text"],
-    .memo-form select {
-      margin-bottom: 10px;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 3px;
-      font-size: 14px;
-    }
-
-    .memo-form button {
-      display: inline-block;
-      padding: 10px 20px;
-      background-color: #007bff;
-      color: #fff;
-      border: none;
-      border-radius: 3px;
-      font-size: 14px;
-      cursor: pointer;
-    }
-
-    /* 備忘錄列表 */
-    .memo-list {
-      list-style-type: none;
-      padding: 0;
-    }
-
-    .memo-list li {
-      margin-bottom: 10px;
-      padding: 10px;
-      background-color: #f9f9f9;
-      border: 1px solid #ddd;
-      border-radius: 3px;
-    }
-
-    .memo-list li span {
-      font-weight: bold;
-    }
-
-    .memo-list li button {
-      margin-right: 5px;
-      background-color: #dc3545;
-      color: #fff;
-      border: none;
-      padding: 5px 10px;
-      border-radius: 3px;
-      font-size: 12px;
-      cursor: pointer;
-    }
-
-    /* 編輯表單 */
-    .edit-form {
-      display: flex;
-      flex-direction: column;
-      margin-bottom: 10px;
-    }
-
-    .edit-form input[type="text"],
-    .edit-form select {
-      margin-bottom: 10px;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 3px;
-      font-size: 14px;
-    }
-
-    .edit-form button {
-      display: inline-block;
-      padding: 10px 20px;
-      background-color: #28a745;
-      color: #fff;
-      border: none;
-      border-radius: 3px;
-      font-size: 14px;
-      cursor: pointer;
-    }
+    /* ... 其他樣式 ... */
   </style>
+  <!-- 加入 Bootstrap CSS 連結 -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 
 <body>
-  <div class="container">
+  <!-- 新增導覽列 -->
+  <nav id="navigation" class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">EARL學習ChatGPT</a>
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbarButtons"
+          aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse" id="navbarButtons">
+        <ul class="nav navbar-nav navbar-right">
+          <li id="navAbout" class="btn navbar-btn navActive">關於</li>
+          <li id="navServices" class="btn navbar-btn">服務</li>
+          <li id="navContact" class="btn navbar-btn">聯絡我們</li>
+          <li><a href="ran.html" class="btn navbar-btn">0712隨機產生器</a></li>
+          <li><a href="table.html" class="btn navbar-btn">0712Table</a></li>
+          <li><a href="calculator.html" class="btn navbar-btn">0712計算機</a></li>
+          <li><a href="chat.html" class="btn navbar-btn">0719ChatBot</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container" style="margin-top: 70px;">
+    <!-- 備忘錄內容 -->
     <h2 class="title">備忘錄</h2>
 
     <form class="memo-form" onsubmit="addMemo(event)">
@@ -144,6 +63,9 @@
     </ul>
   </div>
 
+  <!-- 加入 Bootstrap JavaScript 和 jQuery 連結 -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script>
     // JavaScript代碼
 
