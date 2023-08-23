@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - 簡易匯率換算</title>
+  
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>匯率計算程式</title>
+</head>
+<body>
+    <script>
+        // 匯率
+        var exchange_rates = [40, 35, 33, 30, 27, 25];
+
+        function calculateExchange() {
+            var purchase_amount = parseFloat(document.getElementById("purchaseAmount").value);
+            var sell_amount = parseFloat(document.getElementById("sellAmount").value);
+            var purchase_years = parseInt(document.getElementById("purchaseYears").value);
+
+            var resultDiv = document.getElementById("result");
+            resultDiv.innerHTML = "";
+
+            for (var i = 0; i < exchange_rates.length; i++) {
+                var exchange_rate = exchange_rates[i];
+                var purchase_amount_in_twd = purchase_amount * exchange_rate;
+                var sell_amount_in_twd = sell_amount * exchange_rate;
+
+                var purchase_amount_with_years = purchase_amount * purchase_years;
+                var purchase_amount_with_years_in_twd = purchase_amount_with_years * exchange_rate;
+
+                var resultString = "匯率：" + exchange_rate +
+                                  " 購買金額：" + purchase_amount +
+                                  " 購買年期：" + purchase_years +
+                                  " 購買金額乘年期：" + purchase_amount_with_years +
+                                  " 購買金額乘年期換算成新台幣：" + purchase_amount_with_years_in_twd +
+                                  " 賣出金額：" + sell_amount +
+                                  " 賣出金額換算成新台幣：" + sell_amount_in_twd;
+
+                var resultParagraph = document.createElement("p");
+                resultParagraph.textContent = resultString;
+                resultDiv.appendChild(resultParagraph);
+            }
+        }
+    </script>
+
+    <h1>歡迎使用Earl寫的小程式</h1>
+    <label for="purchaseAmount">請輸入購買金額：</label>
+    <input type="number" id="purchaseAmount">
+    <br>
+    <label for="purchaseYears">請輸入購買年期：</label>
+    <input type="number" id="purchaseYears">
+    <br>
+    <label for="sellAmount">請輸入賣出金額：</label>
+    <input type="number" id="sellAmount">
+    <br>
+    <button onclick="calculateExchange()">計算匯率</button>
+
+    <div id="result"></div>
+</body>
+</html>
+<!-- partial -->
+  
+</body>
+</html>
