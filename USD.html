@@ -1,14 +1,4 @@
 <!DOCTYPE html>
-<html lang="en" >
-<head>
-  <meta charset="UTF-8">
-  <title>CodePen - 簡易匯率換算</title>
-  
-
-</head>
-<body>
-<!-- partial:index.partial.html -->
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -17,16 +7,16 @@
 </head>
 <body>
     <script>
-        // 匯率
-        var exchange_rates = [40, 35, 33, 30, 27, 25];
-
         function calculateExchange() {
+            var custom_exchange_rate = parseFloat(document.getElementById("customExchangeRate").value);
             var purchase_amount = parseFloat(document.getElementById("purchaseAmount").value);
             var sell_amount = parseFloat(document.getElementById("sellAmount").value);
             var purchase_years = parseInt(document.getElementById("purchaseYears").value);
 
             var resultDiv = document.getElementById("result");
             resultDiv.innerHTML = "";
+
+            var exchange_rates = [custom_exchange_rate, 40, 35, 33, 30, 27, 25];
 
             for (var i = 0; i < exchange_rates.length; i++) {
                 var exchange_rate = exchange_rates[i];
@@ -52,7 +42,11 @@
     </script>
 
     <h1>歡迎使用Earl寫的小程式</h1>
-  <h3>假設匯率為 40, 35, 33, 30, 27, 25 的情況</h3>
+    <h3>假設匯率為 40, 35, 33, 30, 27, 25 的情況</h3>
+    <h4>可輸入一個自訂的匯率</h4> 
+    <label for="customExchangeRate">請輸入自訂匯率：</label>
+    <input type="number" id="customExchangeRate">
+    <br>
     <label for="purchaseAmount">請輸入購買金額：</label>
     <input type="number" id="purchaseAmount">
     <br>
@@ -65,9 +59,5 @@
     <button onclick="calculateExchange()">計算匯率</button>
 
     <div id="result"></div>
-</body>
-</html>
-<!-- partial -->
-  
 </body>
 </html>
